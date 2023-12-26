@@ -12,6 +12,42 @@ export class APIClient {
     });
   }
 
+  public async getCategories(): Promise<CategoryNode[]> {
+    try {
+      const response = await this.axiosInstance.get<CategoryNode[]>(
+        "/api/v1/categories"
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async listCategories(
+    request: ListRequest
+  ): Promise<CategoriesListResponse> {
+    try {
+      const response = await this.axiosInstance.post<CategoriesListResponse>(
+        "/api/v1/categories/list",
+        request
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async getCategory(id: number): Promise<Category> {
+    try {
+      const response = await this.axiosInstance.get<Category>(
+        "/api/v1/categories/" + id
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   public async listProducts(
     request: ListRequest
   ): Promise<ProductsListResponse> {
@@ -50,11 +86,36 @@ export interface ListRequest {
   };
 }
 
-export interface ProductsListResponse {
-  Data: Product[];
+export interface ListResponse {
+  Data: any[];
   Page: number;
   Filtered: number;
   Total: number;
+}
+
+export interface CategoriesListResponse extends ListResponse {
+  Data: Category[];
+}
+
+export interface ProductsListResponse extends ListResponse {
+  Data: Product[];
+}
+
+export interface Category {
+  id: number;
+  enabled: boolean;
+  created_at: Date;
+  name: string;
+  label: string;
+  description?: string;
+  media?: Media;
+  media_id?: number;
+  parent_id?: number;
+  updated_at: Date;
+}
+
+export interface CategoryNode extends Category {
+  children?: CategoryNode[];
 }
 
 export interface Product {

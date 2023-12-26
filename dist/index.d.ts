@@ -2,6 +2,9 @@ export declare class APIClient {
     private token;
     private axiosInstance;
     constructor(baseURL: string, token: string);
+    getCategories(): Promise<CategoryNode[]>;
+    listCategories(request: ListRequest): Promise<CategoriesListResponse>;
+    getCategory(id: number): Promise<Category>;
     listProducts(request: ListRequest): Promise<ProductsListResponse>;
     getProduct(id: number): Promise<Product>;
 }
@@ -16,10 +19,32 @@ export interface ListRequest {
         [key: string]: string;
     };
 }
-export interface ProductsListResponse {
-    Data: Product[];
+export interface ListResponse {
+    Data: any[];
+    Page: number;
     Filtered: number;
     Total: number;
+}
+export interface CategoriesListResponse extends ListResponse {
+    Data: Category[];
+}
+export interface ProductsListResponse extends ListResponse {
+    Data: Product[];
+}
+export interface Category {
+    id: number;
+    enabled: boolean;
+    created_at: Date;
+    name: string;
+    label: string;
+    description?: string;
+    media?: Media;
+    media_id?: number;
+    parent_id?: number;
+    updated_at: Date;
+}
+export interface CategoryNode extends Category {
+    children?: CategoryNode[];
 }
 export interface Product {
     id: number;

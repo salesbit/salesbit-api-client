@@ -24,6 +24,39 @@ class APIClient {
             },
         });
     }
+    getCategories() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.axiosInstance.get("/api/v1/categories");
+                return response.data;
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+    }
+    listCategories(request) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.axiosInstance.post("/api/v1/categories/list", request);
+                return response.data;
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+    }
+    getCategory(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.axiosInstance.get("/api/v1/categories/" + id);
+                return response.data;
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+    }
     listProducts(request) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
