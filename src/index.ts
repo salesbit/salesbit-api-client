@@ -125,7 +125,6 @@ export interface Product {
   name: string;
   label: string;
   description?: string;
-  body?: string;
   note?: string;
   sku?: string;
   width: number;
