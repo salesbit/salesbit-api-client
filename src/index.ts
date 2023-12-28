@@ -1,8 +1,16 @@
 import axios, { Axios } from "axios";
 
+/**
+ * Represents an API client for interacting with the SalesBit API.
+ */
 export class APIClient {
   private axiosInstance: Axios;
 
+  /**
+   * Creates an instance of the APIClient class.
+   * @param baseURL - The base URL of the SalesBit API.
+   * @param token - The authentication token for accessing the API.
+   */
   constructor(baseURL: string, private token: string) {
     this.axiosInstance = axios.create({
       baseURL,
@@ -12,6 +20,11 @@ export class APIClient {
     });
   }
 
+  /**
+   * Retrieves the list of categories from the SalesBit API.
+   * @returns A Promise that resolves to an array of CategoryNode objects.
+   * @throws If an error occurs while making the API request.
+   */
   public async getCategories(): Promise<CategoryNode[]> {
     try {
       const response = await this.axiosInstance.get<CategoryNode[]>(
@@ -23,6 +36,12 @@ export class APIClient {
     }
   }
 
+  /**
+   * Lists the categories based on the provided request parameters.
+   * @param request - The request parameters for listing categories.
+   * @returns A Promise that resolves to a CategoriesListResponse object.
+   * @throws If an error occurs while making the API request.
+   */
   public async listCategories(
     request: ListRequest
   ): Promise<CategoriesListResponse> {
@@ -37,6 +56,12 @@ export class APIClient {
     }
   }
 
+  /**
+   * Retrieves a specific category from the SalesBit API.
+   * @param id - The ID of the category to retrieve.
+   * @returns A Promise that resolves to a Category object.
+   * @throws If an error occurs while making the API request.
+   */
   public async getCategory(id: number): Promise<Category> {
     try {
       const response = await this.axiosInstance.get<Category>(
@@ -48,6 +73,12 @@ export class APIClient {
     }
   }
 
+  /**
+   * Lists the products based on the provided request parameters.
+   * @param request - The request parameters for listing products.
+   * @returns A Promise that resolves to a ProductsListResponse object.
+   * @throws If an error occurs while making the API request.
+   */
   public async listProducts(
     request: ListRequest
   ): Promise<ProductsListResponse> {
@@ -62,6 +93,12 @@ export class APIClient {
     }
   }
 
+  /**
+   * Retrieves a specific product from the SalesBit API.
+   * @param id - The ID of the product to retrieve.
+   * @returns A Promise that resolves to a Product object.
+   * @throws If an error occurs while making the API request.
+   */
   public async getProduct(id: number): Promise<Product> {
     try {
       const response = await this.axiosInstance.get<Product>(
@@ -118,6 +155,9 @@ export interface CategoryNode extends Category {
   children?: CategoryNode[];
 }
 
+/**
+ * Represents a product in the salesbit API.
+ */
 export interface Product {
   id: number;
   enabled: boolean;
