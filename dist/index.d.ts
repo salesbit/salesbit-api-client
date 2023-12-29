@@ -50,7 +50,11 @@ export declare class APIClient {
     postCheckout(request: Checkout): Promise<Preorder>;
     postOrder(request: NewOrder): Promise<Order>;
     postUser(request: NewUser): Promise<User>;
-    createCheckout(app: HTMLElement, items: Item[], success: (order: Order) => {}): HTMLIFrameElement;
+    createCheckout(app: HTMLElement, items: Item[], options: {
+        layout?: {
+            [key: string]: any;
+        };
+    }, success: (order: Order) => {}): HTMLIFrameElement;
 }
 export interface ListRequest {
     Search?: string;

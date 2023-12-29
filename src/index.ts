@@ -162,6 +162,7 @@ export class APIClient {
   public createCheckout(
     app: HTMLElement,
     items: Item[],
+    options: { layout?: { [key: string]: any } },
     success: (order: Order) => {}
   ): HTMLIFrameElement {
     const iframe = document.createElement("iframe");
@@ -183,25 +184,27 @@ export class APIClient {
       if (typeof event.data === "object") {
         switch (event.data.action) {
           case "mounted":
-            console.log("mounted parent", event);
+            //console.log("mounted parent", event);
             if (iframe.contentWindow) {
               iframe.contentWindow.postMessage(
                 { action: "calculate", data: { items } },
                 "*"
               );
-              iframe.contentWindow.postMessage(
-                {
-                  action: "layout",
-                  layout: { ".fields .label": { textDecoration: "underline" } },
-                },
-                "*"
-              );
+              if (options.layout) {
+                iframe.contentWindow.postMessage(
+                  {
+                    action: "layout",
+                    layout: options.layout,
+                  },
+                  "*"
+                );
+              }
               iframe.style.opacity = "1";
               iframe.style.position = "relative";
             }
             break;
           case "resize":
-            console.log("resize", event.data.height);
+            //console.log("resize", event.data.height);
             iframe.style.height = event.data.height + "px";
             break;
           case "pong":

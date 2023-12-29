@@ -162,7 +162,7 @@ class APIClient {
             }
         });
     }
-    createCheckout(app, items, success) {
+    createCheckout(app, items, options, success) {
         const iframe = document.createElement("iframe");
         iframe.src = this.baseURL + "/projects/" + this.uid + "/checkout";
         iframe.style.width = "100%";
@@ -180,19 +180,21 @@ class APIClient {
             if (typeof event.data === "object") {
                 switch (event.data.action) {
                     case "mounted":
-                        console.log("mounted parent", event);
+                        //console.log("mounted parent", event);
                         if (iframe.contentWindow) {
                             iframe.contentWindow.postMessage({ action: "calculate", data: { items } }, "*");
-                            iframe.contentWindow.postMessage({
-                                action: "layout",
-                                layout: { ".fields .label": { textDecoration: "underline" } },
-                            }, "*");
+                            if (options.layout) {
+                                iframe.contentWindow.postMessage({
+                                    action: "layout",
+                                    layout: options.layout,
+                                }, "*");
+                            }
                             iframe.style.opacity = "1";
                             iframe.style.position = "relative";
                         }
                         break;
                     case "resize":
-                        console.log("resize", event.data.height);
+                        //console.log("resize", event.data.height);
                         iframe.style.height = event.data.height + "px";
                         break;
                     case "pong":
