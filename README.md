@@ -1,14 +1,93 @@
 # Build
 
+```bash
 npm install
 
 npm run build
 
 npm pack --pack-destination builds/
+```
+
+# Quick start
+
+### Install
+
+```bash
+npm install salesbit-api-client
+```
+
+### Import
+
+```javascript
+import { APIClient } from "salesbit-api-client";
+```
+
+### Create instance
+
+```javascript
+const client = new APIClient(url, token);
+```
+
+where **url**: string like this 'https://api.site.com' (no trailing slash)
+
+**token**: string 'prjX-....'
+
+### Get all categories in tree like mode
+
+```javascript
+client.getCategories(): CategoryNode[]
+```
+
+### Get list of categories
+
+```javascript
+client.listCategories(listRequest);
+```
+
+### Get category by id
+
+```javascript
+client.getCategory(id);
+```
+
+### Get list of products
+
+```javascript
+client.listProducts(listRequest);
+```
+
+### Get product by id
+
+```javascript
+client.getProduct(id);
+```
+
+### Checkout process
+
+```javascript
+const iframe = client.createCheckout(
+  document.querySelector("#checkout"),
+  [{ uid: String(product.id), amount: 1 }],
+  { layout: { ".fields .label": { textDecoration: "underline" } } },
+  (order: Order) => {
+    console.log("created order", order);
+    iframe;
+  }
+);
+```
+
+arguments
+
+```
+  app: HTMLElement,
+  items: Item[],
+  options: { layout?: { [key: string]: any } },
+  success: (order: Order) => {}
+```
 
 # Types
 
-```
+```typescript
 interface ListRequest {
   Search?: string;
   Filter?: {
@@ -22,7 +101,7 @@ interface ListRequest {
 }
 ```
 
-```
+```typescript
 interface ListResponse {
   Data: any[];
   Page: number;
@@ -31,7 +110,7 @@ interface ListResponse {
 }
 ```
 
-```
+```typescript
 export interface Category {
   id: number;
   enabled: boolean;
@@ -46,13 +125,13 @@ export interface Category {
 }
 ```
 
-```
+```typescript
 export interface CategoryNode extends Category {
   children?: CategoryNode[];
 }
 ```
 
-```
+```typescript
 export interface Product {
   id: number;
   enabled: boolean;
@@ -77,7 +156,7 @@ export interface Product {
 }
 ```
 
-```
+```typescript
 export interface Media {
   id?: number;
   created_at: Date;
@@ -93,58 +172,4 @@ export interface Media {
   project_id?: number;
   updated_at?: Date;
 }
-```
-
-# Examples
-
-Install
-
-```
-npm install salesbit-api-client
-```
-
-Import
-
-```
-import {APIClient} from 'salesbit-api-client'
-```
-
-Create instance
-
-```
-const client = new APIClient(url, token);
-```
-
-where **url**: string like this 'https://api.site.com' (no trailing slash)
-
-**token**: string 'prjX-....'
-
-Get all categories in tree like mode
-
-```
-client.getCategories(): CategoryNode[]
-```
-
-Get list of categories
-
-```
-client.listCategories(listRequest)
-```
-
-Get category by id
-
-```
-client.getCategory(id)
-```
-
-Get list of products
-
-```
-client.listProducts(listRequest)
-```
-
-Get product by id
-
-```
-client.getProduct(id)
 ```
