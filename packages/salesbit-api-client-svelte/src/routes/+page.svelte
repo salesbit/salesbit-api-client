@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Properties from '$lib/product/Properties.svelte';
+	import Price from '$lib/product/Price.svelte';
 
-	const product = {
+	let product = {
 		id: 17,
 		uid: '1-17',
 		name: 'new-product-7',
@@ -273,18 +274,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:01.756Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 25,
-						rateId: 1
+						id: 1,
+						created_at: '2024-01-04T17:05:41.000Z',
+						enabled: true,
+						name: 'value-1',
+						label: 'Value 1',
+						description: null,
+						price: 101,
+						property_id: 2,
+						value_id: 1,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 1,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-1',
+							label: 'Value 1',
+							description: 'the description',
+							type: '',
+							value: 'value-1',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 25,
-						rateId: 8
+						id: 8,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '1',
+						label: '1',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 25,
-						rateId: 13
+						id: 13,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-11',
+						label: 'Value 11',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 3,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 3,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-11',
+							label: 'Value 11',
+							description: null,
+							type: 'text',
+							value: '111',
+							option_id: 2,
+							project_id: 1,
+							updated_at: '2024-01-04T15:26:32.376Z'
+						}
 					}
 				]
 			},
@@ -295,18 +351,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:02.007Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 26,
-						rateId: 1
+						id: 1,
+						created_at: '2024-01-04T17:05:41.000Z',
+						enabled: true,
+						name: 'value-1',
+						label: 'Value 1',
+						description: null,
+						price: 101,
+						property_id: 2,
+						value_id: 1,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 1,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-1',
+							label: 'Value 1',
+							description: 'the description',
+							type: '',
+							value: 'value-1',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 26,
-						rateId: 8
+						id: 8,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '1',
+						label: '1',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 26,
-						rateId: 14
+						id: 14,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-22',
+						label: 'Value 22',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 4,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 4,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-22',
+							label: 'Value 22',
+							description: null,
+							type: 'text',
+							value: 'value 22',
+							option_id: 2,
+							project_id: 1,
+							updated_at: null
+						}
 					}
 				]
 			},
@@ -317,18 +428,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:02.259Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 27,
-						rateId: 1
+						id: 1,
+						created_at: '2024-01-04T17:05:41.000Z',
+						enabled: true,
+						name: 'value-1',
+						label: 'Value 1',
+						description: null,
+						price: 101,
+						property_id: 2,
+						value_id: 1,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 1,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-1',
+							label: 'Value 1',
+							description: 'the description',
+							type: '',
+							value: 'value-1',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 27,
-						rateId: 9
+						id: 9,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '2',
+						label: '2',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 27,
-						rateId: 13
+						id: 13,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-11',
+						label: 'Value 11',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 3,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 3,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-11',
+							label: 'Value 11',
+							description: null,
+							type: 'text',
+							value: '111',
+							option_id: 2,
+							project_id: 1,
+							updated_at: '2024-01-04T15:26:32.376Z'
+						}
 					}
 				]
 			},
@@ -339,18 +505,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:02.509Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 28,
-						rateId: 1
+						id: 1,
+						created_at: '2024-01-04T17:05:41.000Z',
+						enabled: true,
+						name: 'value-1',
+						label: 'Value 1',
+						description: null,
+						price: 101,
+						property_id: 2,
+						value_id: 1,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 1,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-1',
+							label: 'Value 1',
+							description: 'the description',
+							type: '',
+							value: 'value-1',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 28,
-						rateId: 9
+						id: 9,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '2',
+						label: '2',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 28,
-						rateId: 14
+						id: 14,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-22',
+						label: 'Value 22',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 4,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 4,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-22',
+							label: 'Value 22',
+							description: null,
+							type: 'text',
+							value: 'value 22',
+							option_id: 2,
+							project_id: 1,
+							updated_at: null
+						}
 					}
 				]
 			},
@@ -361,18 +582,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:02.770Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 29,
-						rateId: 1
+						id: 1,
+						created_at: '2024-01-04T17:05:41.000Z',
+						enabled: true,
+						name: 'value-1',
+						label: 'Value 1',
+						description: null,
+						price: 101,
+						property_id: 2,
+						value_id: 1,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 1,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-1',
+							label: 'Value 1',
+							description: 'the description',
+							type: '',
+							value: 'value-1',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 29,
-						rateId: 10
+						id: 10,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '3',
+						label: '3',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 29,
-						rateId: 13
+						id: 13,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-11',
+						label: 'Value 11',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 3,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 3,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-11',
+							label: 'Value 11',
+							description: null,
+							type: 'text',
+							value: '111',
+							option_id: 2,
+							project_id: 1,
+							updated_at: '2024-01-04T15:26:32.376Z'
+						}
 					}
 				]
 			},
@@ -383,18 +659,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:03.025Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 30,
-						rateId: 1
+						id: 1,
+						created_at: '2024-01-04T17:05:41.000Z',
+						enabled: true,
+						name: 'value-1',
+						label: 'Value 1',
+						description: null,
+						price: 101,
+						property_id: 2,
+						value_id: 1,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 1,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-1',
+							label: 'Value 1',
+							description: 'the description',
+							type: '',
+							value: 'value-1',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 30,
-						rateId: 10
+						id: 10,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '3',
+						label: '3',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 30,
-						rateId: 14
+						id: 14,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-22',
+						label: 'Value 22',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 4,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 4,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-22',
+							label: 'Value 22',
+							description: null,
+							type: 'text',
+							value: 'value 22',
+							option_id: 2,
+							project_id: 1,
+							updated_at: null
+						}
 					}
 				]
 			},
@@ -405,18 +736,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:03.280Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 31,
-						rateId: 1
+						id: 1,
+						created_at: '2024-01-04T17:05:41.000Z',
+						enabled: true,
+						name: 'value-1',
+						label: 'Value 1',
+						description: null,
+						price: 101,
+						property_id: 2,
+						value_id: 1,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 1,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-1',
+							label: 'Value 1',
+							description: 'the description',
+							type: '',
+							value: 'value-1',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 31,
-						rateId: 11
+						id: 11,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '4',
+						label: '4',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: 11,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 31,
-						rateId: 13
+						id: 13,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-11',
+						label: 'Value 11',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 3,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 3,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-11',
+							label: 'Value 11',
+							description: null,
+							type: 'text',
+							value: '111',
+							option_id: 2,
+							project_id: 1,
+							updated_at: '2024-01-04T15:26:32.376Z'
+						}
 					}
 				]
 			},
@@ -427,18 +813,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:03.537Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 32,
-						rateId: 1
+						id: 1,
+						created_at: '2024-01-04T17:05:41.000Z',
+						enabled: true,
+						name: 'value-1',
+						label: 'Value 1',
+						description: null,
+						price: 101,
+						property_id: 2,
+						value_id: 1,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 1,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-1',
+							label: 'Value 1',
+							description: 'the description',
+							type: '',
+							value: 'value-1',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 32,
-						rateId: 11
+						id: 11,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '4',
+						label: '4',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: 11,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 32,
-						rateId: 14
+						id: 14,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-22',
+						label: 'Value 22',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 4,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 4,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-22',
+							label: 'Value 22',
+							description: null,
+							type: 'text',
+							value: 'value 22',
+							option_id: 2,
+							project_id: 1,
+							updated_at: null
+						}
 					}
 				]
 			},
@@ -449,18 +890,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:03.794Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 33,
-						rateId: 1
+						id: 1,
+						created_at: '2024-01-04T17:05:41.000Z',
+						enabled: true,
+						name: 'value-1',
+						label: 'Value 1',
+						description: null,
+						price: 101,
+						property_id: 2,
+						value_id: 1,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 1,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-1',
+							label: 'Value 1',
+							description: 'the description',
+							type: '',
+							value: 'value-1',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 33,
-						rateId: 12
+						id: 12,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '5',
+						label: '5',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: 11,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 33,
-						rateId: 13
+						id: 13,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-11',
+						label: 'Value 11',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 3,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 3,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-11',
+							label: 'Value 11',
+							description: null,
+							type: 'text',
+							value: '111',
+							option_id: 2,
+							project_id: 1,
+							updated_at: '2024-01-04T15:26:32.376Z'
+						}
 					}
 				]
 			},
@@ -471,18 +967,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:04.104Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 34,
-						rateId: 1
+						id: 1,
+						created_at: '2024-01-04T17:05:41.000Z',
+						enabled: true,
+						name: 'value-1',
+						label: 'Value 1',
+						description: null,
+						price: 101,
+						property_id: 2,
+						value_id: 1,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 1,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-1',
+							label: 'Value 1',
+							description: 'the description',
+							type: '',
+							value: 'value-1',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 34,
-						rateId: 12
+						id: 12,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '5',
+						label: '5',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: 11,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 34,
-						rateId: 14
+						id: 14,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-22',
+						label: 'Value 22',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 4,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 4,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-22',
+							label: 'Value 22',
+							description: null,
+							type: 'text',
+							value: 'value 22',
+							option_id: 2,
+							project_id: 1,
+							updated_at: null
+						}
 					}
 				]
 			},
@@ -493,18 +1044,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:04.357Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 35,
-						rateId: 2
+						id: 2,
+						created_at: '2024-01-05T08:18:33.000Z',
+						enabled: true,
+						name: 'value-2',
+						label: 'Value 2',
+						description: null,
+						price: 102,
+						property_id: 2,
+						value_id: 2,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 2,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-2',
+							label: 'Value 2',
+							description: 'the description',
+							type: '',
+							value: 'value-2',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 35,
-						rateId: 8
+						id: 8,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '1',
+						label: '1',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 35,
-						rateId: 13
+						id: 13,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-11',
+						label: 'Value 11',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 3,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 3,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-11',
+							label: 'Value 11',
+							description: null,
+							type: 'text',
+							value: '111',
+							option_id: 2,
+							project_id: 1,
+							updated_at: '2024-01-04T15:26:32.376Z'
+						}
 					}
 				]
 			},
@@ -515,18 +1121,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:04.611Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 36,
-						rateId: 2
+						id: 2,
+						created_at: '2024-01-05T08:18:33.000Z',
+						enabled: true,
+						name: 'value-2',
+						label: 'Value 2',
+						description: null,
+						price: 102,
+						property_id: 2,
+						value_id: 2,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 2,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-2',
+							label: 'Value 2',
+							description: 'the description',
+							type: '',
+							value: 'value-2',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 36,
-						rateId: 8
+						id: 8,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '1',
+						label: '1',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 36,
-						rateId: 14
+						id: 14,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-22',
+						label: 'Value 22',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 4,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 4,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-22',
+							label: 'Value 22',
+							description: null,
+							type: 'text',
+							value: 'value 22',
+							option_id: 2,
+							project_id: 1,
+							updated_at: null
+						}
 					}
 				]
 			},
@@ -537,18 +1198,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:04.872Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 37,
-						rateId: 2
+						id: 2,
+						created_at: '2024-01-05T08:18:33.000Z',
+						enabled: true,
+						name: 'value-2',
+						label: 'Value 2',
+						description: null,
+						price: 102,
+						property_id: 2,
+						value_id: 2,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 2,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-2',
+							label: 'Value 2',
+							description: 'the description',
+							type: '',
+							value: 'value-2',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 37,
-						rateId: 9
+						id: 9,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '2',
+						label: '2',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 37,
-						rateId: 13
+						id: 13,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-11',
+						label: 'Value 11',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 3,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 3,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-11',
+							label: 'Value 11',
+							description: null,
+							type: 'text',
+							value: '111',
+							option_id: 2,
+							project_id: 1,
+							updated_at: '2024-01-04T15:26:32.376Z'
+						}
 					}
 				]
 			},
@@ -559,18 +1275,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:05.129Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 38,
-						rateId: 2
+						id: 2,
+						created_at: '2024-01-05T08:18:33.000Z',
+						enabled: true,
+						name: 'value-2',
+						label: 'Value 2',
+						description: null,
+						price: 102,
+						property_id: 2,
+						value_id: 2,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 2,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-2',
+							label: 'Value 2',
+							description: 'the description',
+							type: '',
+							value: 'value-2',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 38,
-						rateId: 9
+						id: 9,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '2',
+						label: '2',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 38,
-						rateId: 14
+						id: 14,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-22',
+						label: 'Value 22',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 4,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 4,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-22',
+							label: 'Value 22',
+							description: null,
+							type: 'text',
+							value: 'value 22',
+							option_id: 2,
+							project_id: 1,
+							updated_at: null
+						}
 					}
 				]
 			},
@@ -581,18 +1352,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:05.384Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 39,
-						rateId: 2
+						id: 2,
+						created_at: '2024-01-05T08:18:33.000Z',
+						enabled: true,
+						name: 'value-2',
+						label: 'Value 2',
+						description: null,
+						price: 102,
+						property_id: 2,
+						value_id: 2,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 2,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-2',
+							label: 'Value 2',
+							description: 'the description',
+							type: '',
+							value: 'value-2',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 39,
-						rateId: 10
+						id: 10,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '3',
+						label: '3',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 39,
-						rateId: 13
+						id: 13,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-11',
+						label: 'Value 11',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 3,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 3,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-11',
+							label: 'Value 11',
+							description: null,
+							type: 'text',
+							value: '111',
+							option_id: 2,
+							project_id: 1,
+							updated_at: '2024-01-04T15:26:32.376Z'
+						}
 					}
 				]
 			},
@@ -603,18 +1429,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:05.636Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 40,
-						rateId: 2
+						id: 2,
+						created_at: '2024-01-05T08:18:33.000Z',
+						enabled: true,
+						name: 'value-2',
+						label: 'Value 2',
+						description: null,
+						price: 102,
+						property_id: 2,
+						value_id: 2,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 2,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-2',
+							label: 'Value 2',
+							description: 'the description',
+							type: '',
+							value: 'value-2',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 40,
-						rateId: 10
+						id: 10,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '3',
+						label: '3',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 40,
-						rateId: 14
+						id: 14,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-22',
+						label: 'Value 22',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 4,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 4,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-22',
+							label: 'Value 22',
+							description: null,
+							type: 'text',
+							value: 'value 22',
+							option_id: 2,
+							project_id: 1,
+							updated_at: null
+						}
 					}
 				]
 			},
@@ -625,18 +1506,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:05.886Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 41,
-						rateId: 2
+						id: 2,
+						created_at: '2024-01-05T08:18:33.000Z',
+						enabled: true,
+						name: 'value-2',
+						label: 'Value 2',
+						description: null,
+						price: 102,
+						property_id: 2,
+						value_id: 2,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 2,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-2',
+							label: 'Value 2',
+							description: 'the description',
+							type: '',
+							value: 'value-2',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 41,
-						rateId: 11
+						id: 11,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '4',
+						label: '4',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: 11,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 41,
-						rateId: 13
+						id: 13,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-11',
+						label: 'Value 11',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 3,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 3,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-11',
+							label: 'Value 11',
+							description: null,
+							type: 'text',
+							value: '111',
+							option_id: 2,
+							project_id: 1,
+							updated_at: '2024-01-04T15:26:32.376Z'
+						}
 					}
 				]
 			},
@@ -647,18 +1583,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:06.138Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 42,
-						rateId: 2
+						id: 2,
+						created_at: '2024-01-05T08:18:33.000Z',
+						enabled: true,
+						name: 'value-2',
+						label: 'Value 2',
+						description: null,
+						price: 102,
+						property_id: 2,
+						value_id: 2,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 2,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-2',
+							label: 'Value 2',
+							description: 'the description',
+							type: '',
+							value: 'value-2',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 42,
-						rateId: 11
+						id: 11,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '4',
+						label: '4',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: 11,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 42,
-						rateId: 14
+						id: 14,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-22',
+						label: 'Value 22',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 4,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 4,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-22',
+							label: 'Value 22',
+							description: null,
+							type: 'text',
+							value: 'value 22',
+							option_id: 2,
+							project_id: 1,
+							updated_at: null
+						}
 					}
 				]
 			},
@@ -669,18 +1660,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:06.390Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 43,
-						rateId: 2
+						id: 2,
+						created_at: '2024-01-05T08:18:33.000Z',
+						enabled: true,
+						name: 'value-2',
+						label: 'Value 2',
+						description: null,
+						price: 102,
+						property_id: 2,
+						value_id: 2,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 2,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-2',
+							label: 'Value 2',
+							description: 'the description',
+							type: '',
+							value: 'value-2',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 43,
-						rateId: 12
+						id: 12,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '5',
+						label: '5',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: 11,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 43,
-						rateId: 13
+						id: 13,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-11',
+						label: 'Value 11',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 3,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 3,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-11',
+							label: 'Value 11',
+							description: null,
+							type: 'text',
+							value: '111',
+							option_id: 2,
+							project_id: 1,
+							updated_at: '2024-01-04T15:26:32.376Z'
+						}
 					}
 				]
 			},
@@ -691,18 +1737,73 @@
 				product_id: 17,
 				project_id: null,
 				updated_at: '2024-01-05T14:51:06.646Z',
-				priceRates: [
+				rates: [
 					{
-						priceId: 44,
-						rateId: 2
+						id: 2,
+						created_at: '2024-01-05T08:18:33.000Z',
+						enabled: true,
+						name: 'value-2',
+						label: 'Value 2',
+						description: null,
+						price: 102,
+						property_id: 2,
+						value_id: 2,
+						product_id: 17,
+						project_id: 1,
+						updated_at: null,
+						value: {
+							id: 2,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-2',
+							label: 'Value 2',
+							description: 'the description',
+							type: '',
+							value: 'value-2',
+							option_id: 1,
+							project_id: 1,
+							updated_at: null
+						}
 					},
 					{
-						priceId: 44,
-						rateId: 12
+						id: 12,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: '5',
+						label: '5',
+						description: null,
+						price: null,
+						property_id: 11,
+						value_id: null,
+						product_id: 11,
+						project_id: null,
+						updated_at: null,
+						value: null
 					},
 					{
-						priceId: 44,
-						rateId: 14
+						id: 14,
+						created_at: '2024-01-04T15:57:33.242Z',
+						enabled: true,
+						name: 'value-22',
+						label: 'Value 22',
+						description: null,
+						price: null,
+						property_id: 12,
+						value_id: 4,
+						product_id: null,
+						project_id: null,
+						updated_at: null,
+						value: {
+							id: 4,
+							created_at: '2024-01-04T12:42:53.186Z',
+							name: 'value-22',
+							label: 'Value 22',
+							description: null,
+							type: 'text',
+							value: 'value 22',
+							option_id: 2,
+							project_id: 1,
+							updated_at: null
+						}
 					}
 				]
 			}
@@ -718,4 +1819,7 @@
 	};
 </script>
 
-<div>Hello world</div>
+<div>
+	<Properties title="Properties" bind:product></Properties>
+	<Price title="Price" bind:product></Price>
+</div>

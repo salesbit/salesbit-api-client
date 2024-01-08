@@ -1,13 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { type Product, humanizeMoney } from 'salesbit-api-client';
 
 	export let title: string;
-	export let product: Product;
+	export let product;
 
 	let params: URLSearchParams = new URLSearchParams();
-
-	let price;
 
 	let chunks = [];
 
@@ -26,24 +23,11 @@
 				}
 			});
 		}
-		price = getPrice(product.prices, chunks || []);
 	});
 
 	const onPropertySelect = () => {
-		price = getPrice(product.prices, chunks);
-		window.history.pushState({}, '', `?uid=${chunks.join(',')}`);
-	};
-
-	const getPrice = (prices, selectedRates) => {
-		function containsAllRates(priceRates, selectedRates) {
-			return selectedRates.every((selectedRate) =>
-				priceRates.some((rate) => rate.id === selectedRate)
-			);
-		}
-
-		const result = prices.find((price) => containsAllRates(price.rates, selectedRates));
-
-		return result || null;
+		product.uuid = chunks.join(',');
+		window.history.pushState({}, '', `?uid=${product.uuid}`);
 	};
 </script>
 
@@ -96,17 +80,3 @@
 		</div>
 	</div>
 {/if}
-<div class="flex justify-between">
-	<h3 class="text-xl">Price</h3>
-	{#if product.prices?.length}
-		{#if price?.price > 0}
-			<div>
-				{humanizeMoney(price.price)}
-			</div>
-		{:else}
-			n/a
-		{/if}
-	{:else}
-		<div>{humanizeMoney(product.price)}</div>
-	{/if}
-</div>
