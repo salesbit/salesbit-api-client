@@ -13,7 +13,11 @@ export class APIClient {
    * @param baseURL - The base URL of the SalesBit API.
    * @param token - The authentication token for accessing the API.
    */
-  constructor(baseURL: string, uid: string, private token: string) {
+  constructor(
+    baseURL: string,
+    uid: string,
+    private token: string
+  ) {
     this.axiosInstance = axios.create({
       baseURL,
       headers: {
@@ -31,9 +35,8 @@ export class APIClient {
    */
   public async getCategories(): Promise<CategoryNode[]> {
     try {
-      const response = await this.axiosInstance.get<CategoryNode[]>(
-        "/api/v1/categories"
-      );
+      const response =
+        await this.axiosInstance.get<CategoryNode[]>("/api/v1/categories");
       return response.data;
     } catch (error) {
       throw error;
@@ -431,3 +434,79 @@ export interface User {
   media_id?: number;
   updated_at?: Date;
 }
+
+export interface Option {
+  id?: number;
+  created_at: Date;
+  product_id: number;
+  project_id?: number;
+  updated_at?: Date;
+}
+
+export interface Value {
+  id?: number;
+  created_at?: Date;
+  enabled?: boolean;
+  name: string;
+  label: string;
+  description?: string;
+  type: string;
+  value: string;
+  option_id: number;
+  updated_at?: Date;
+}
+
+export interface Property {
+  id?: number;
+  created_at: Date;
+  name: string;
+  label: string;
+  description?: string;
+  option?: Option;
+  option_id: number;
+  product_id: number;
+  project_id?: number;
+  updated_at?: Date;
+}
+
+export interface Rate {
+  id?: number;
+  created_at?: Date;
+  prices: Price[];
+  value?: number;
+  property_id: number;
+  product_id: number;
+  project_id?: number;
+  updated_at?: Date;
+}
+
+export interface Price {
+  id?: number;
+  created_at?: Date;
+  rates: Rate[];
+  price?: number;
+  product_id: number;
+  project_id?: number;
+  updated_at?: Date;
+}
+
+export const humanizeMoney = (number: number, currencyChar = "$") => {
+  // Determine if the number has a fractional part
+  const hasFractionalPart = number % 1 !== 0;
+
+  // Create an options object for the Intl.NumberFormat
+  const options = {
+    style: "decimal",
+    minimumFractionDigits: hasFractionalPart ? 2 : 0, // Ensure two decimal places if there is a fractional part
+    maximumFractionDigits: 2,
+  };
+
+  // Create a new Intl.NumberFormat object with the desired options
+  const formatter = new Intl.NumberFormat("en-US", options);
+
+  // Format the number using the formatter
+  const formattedNumber = formatter.format(number);
+
+  // Return the formatted string with the currency character
+  return `${currencyChar}${formattedNumber}`;
+};

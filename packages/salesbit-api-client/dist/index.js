@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.InvoiceStatus = exports.OrderStatus = exports.APIClient = void 0;
+exports.humanizeMoney = exports.InvoiceStatus = exports.OrderStatus = exports.APIClient = void 0;
 const axios_1 = __importDefault(require("axios"));
 /**
  * Represents an API client for interacting with the SalesBit API.
@@ -243,3 +243,20 @@ var InvoiceStatus;
     InvoiceStatus[InvoiceStatus["paid"] = 2] = "paid";
     InvoiceStatus[InvoiceStatus["unpaid"] = 3] = "unpaid";
 })(InvoiceStatus || (exports.InvoiceStatus = InvoiceStatus = {}));
+const humanizeMoney = (number, currencyChar = "$") => {
+    // Determine if the number has a fractional part
+    const hasFractionalPart = number % 1 !== 0;
+    // Create an options object for the Intl.NumberFormat
+    const options = {
+        style: "decimal",
+        minimumFractionDigits: hasFractionalPart ? 2 : 0, // Ensure two decimal places if there is a fractional part
+        maximumFractionDigits: 2,
+    };
+    // Create a new Intl.NumberFormat object with the desired options
+    const formatter = new Intl.NumberFormat("en-US", options);
+    // Format the number using the formatter
+    const formattedNumber = formatter.format(number);
+    // Return the formatted string with the currency character
+    return `${currencyChar}${formattedNumber}`;
+};
+exports.humanizeMoney = humanizeMoney;

@@ -230,3 +230,54 @@ export interface User {
     media_id?: number;
     updated_at?: Date;
 }
+export interface Option {
+    id?: number;
+    created_at: Date;
+    product_id: number;
+    project_id?: number;
+    updated_at?: Date;
+}
+export interface Value {
+    id?: number;
+    created_at?: Date;
+    enabled?: boolean;
+    name: string;
+    label: string;
+    description?: string;
+    type: string;
+    value: string;
+    option_id: number;
+    updated_at?: Date;
+}
+export interface Property {
+    id?: number;
+    created_at: Date;
+    name: string;
+    label: string;
+    description?: string;
+    option?: Option;
+    option_id: number;
+    product_id: number;
+    project_id?: number;
+    updated_at?: Date;
+}
+export interface Rate {
+    id?: number;
+    created_at?: Date;
+    prices: Price[];
+    value?: number;
+    property_id: number;
+    product_id: number;
+    project_id?: number;
+    updated_at?: Date;
+}
+export interface Price {
+    id?: number;
+    created_at?: Date;
+    rates: Rate[];
+    price?: number;
+    product_id: number;
+    project_id?: number;
+    updated_at?: Date;
+}
+export declare const humanizeMoney: (number: number, currencyChar?: string) => string;
