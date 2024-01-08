@@ -1,0 +1,12 @@
+35 error Error: Command failed with exit code 1: git add -- packages/salesbit-api-client-svelte/package.json packages/salesbit-api-client/package.json packages/salesbit-api-client/package-lock.json package-lock.json
+35 error The following paths are ignored by one of your .gitignore files:
+35 error package-lock.json
+35 error packages/salesbit-api-client/package-lock.json
+35 error hint: Use -f if you really want to add them.
+35 error hint: Turn this message off by running
+35 error hint: "git config advice.addIgnoredFile false"
+35 error     at makeError (/Users/ilyafrolov/VSCodeProjects/salesbit-api-client/node_modules/execa/lib/error.js:59:11)
+35 error     at handlePromise (/Users/ilyafrolov/VSCodeProjects/salesbit-api-client/node_modules/execa/index.js:114:26)
+35 error     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+35 error     at async VersionCommand.updatePackageVersions (/Users/ilyafrolov/VSCodeProjects/salesbit-api-client/node_modules/lerna/dist/index.js:8472:11)
+35 error     at async Promise.all (index 0)
