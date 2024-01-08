@@ -76,13 +76,15 @@ const iframe = client.createCheckout(
 );
 ```
 
-arguments
+signature
 
-```
-  app: HTMLElement,
-  items: Item[],
-  options: { layout?: { [key: string]: any } },
-  success: (order: Order) => {}
+```typescript
+  public createCheckout(
+    app: HTMLElement,
+    items: Item[],
+    options: { layout?: { [key: string]: any } },
+    success: (order: Order) => {}
+  ): HTMLIFrameElement {/* ... */}
 ```
 
 # Types

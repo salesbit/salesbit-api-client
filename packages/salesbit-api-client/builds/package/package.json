@@ -1,0 +1,20 @@
+{
+  "name": "salesbit-api-client",
+  "version": "0.2.2",
+  "description": "API client for salesbit",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0"
+  }
+}
