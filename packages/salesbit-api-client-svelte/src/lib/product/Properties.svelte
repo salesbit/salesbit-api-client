@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { type Product } from 'salesbit-api-client';
 
 	export let title: string;
-	export let product;
+	export let product: Product;
 
 	let params: URLSearchParams = new URLSearchParams();
 
