@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ProductProperties } from '$lib/index';
+	import Properties from '$lib/product/Properties.svelte';
 
 	const product = {
 		id: 17,
@@ -718,6 +718,4 @@
 	};
 </script>
 
-<div>
-	<ProductProperties title="Properties" {product}></ProductProperties>
-</div>
+<div>Hello world</div>
