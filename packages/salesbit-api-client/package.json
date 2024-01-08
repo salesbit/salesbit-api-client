@@ -1,6 +1,6 @@
 {
   "name": "salesbit-api-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "API client for salesbit",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
