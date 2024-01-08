@@ -26,7 +26,7 @@
 				}
 			});
 		}
-		price = getPrice(product.prices, chunks);
+		price = getPrice(product.prices, chunks || []);
 	});
 
 	const onPropertySelect = () => {
