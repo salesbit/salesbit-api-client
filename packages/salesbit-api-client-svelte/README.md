@@ -56,3 +56,9 @@ To publish your library to [npm](https://www.npmjs.com):
 ```bash
 npm publish
 ```
+
+## Deps
+
+```
+npm install salesbit-api-client -w salesbit-api-client-svelte
+```
