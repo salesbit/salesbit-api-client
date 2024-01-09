@@ -5,7 +5,8 @@
     "module": "esnext",
     "outDir": "dist/esm",
     "moduleResolution": "node", // Use "node" for older TypeScript versions
-    "baseUrl": "."
+    "baseUrl": ".",
+    "target": "es2020"
     // "paths" if you have custom path mappings
   },
   "include": ["src/**/*"]

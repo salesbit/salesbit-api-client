@@ -194,8 +194,8 @@ export interface Item {
 }
 export declare enum OrderStatus {
     new = 1,
-    paying = 2,
-    paid = 3,
+    paying = 2,//payment pending
+    paid = 3,// payment successful
     unpaid = 4
 }
 export declare enum InvoiceStatus {

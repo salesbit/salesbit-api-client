@@ -249,7 +249,7 @@ const humanizeMoney = (number, currencyChar = "$") => {
     // Create an options object for the Intl.NumberFormat
     const options = {
         style: "decimal",
-        minimumFractionDigits: hasFractionalPart ? 2 : 0,
+        minimumFractionDigits: hasFractionalPart ? 2 : 0, // Ensure two decimal places if there is a fractional part
         maximumFractionDigits: 2,
     };
     // Create a new Intl.NumberFormat object with the desired options
