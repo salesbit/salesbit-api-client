@@ -57,8 +57,58 @@ To publish your library to [npm](https://www.npmjs.com):
 npm publish
 ```
 
-## Deps
+## Testing
 
 ```
 npm install salesbit-api-client -w salesbit-api-client-svelte
+```
+
+## Usage
+
+Install packages
+
+```bash
+npm install salesbit-api-client --save
+npm install salesbit-api-client-svelte --save
+```
+
+Quick start example
+
+```javascript
+import { APIClient } from 'salesbit-api-client';
+import Properties from '$lib/product/Properties.svelte';
+import Price from '$lib/product/Price.svelte';
+import Checkout from '$lib/Checkout.svelte';
+
+let client: APIClient;
+let product;
+let loading = false;
+
+onMount(async () => {
+  client = new APIClient(
+    'https://api.server.com',
+    '11111111-...',
+    'prj1-...'
+  );
+  try {
+    loading = true;
+    const resp = await client.getProduct('1-17');
+    console.log(resp);
+    product = resp;
+  } catch (err) {
+    console.error(err);
+  } finally {
+    loading = false;
+  }
+});
+
+{#if product}
+	<div>
+		<Properties title="Properties" bind:product></Properties>
+		<Price title="Price" bind:product></Price>
+		<Checkout {client}></Checkout>
+	</div>
+{:else}
+	<div>loading</div>
+{/if}
 ```

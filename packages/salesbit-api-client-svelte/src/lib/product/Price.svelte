@@ -30,7 +30,7 @@
 				}
 			});
 		}
-		price = getPrice(product.prices || [], chunks || []);
+		price = getPrice(product?.prices || [], chunks || []);
 	});
 
 	const getPrice = (prices, selectedRates) => {
@@ -46,23 +46,25 @@
 	};
 </script>
 
-<div>
-	{#if title}
-		<div>
-			<h3 class="text-xl">{title}</h3>
-		</div>
-	{/if}
-	<div class="flex justify-between">
-		{#if product?.properties?.length}
-			{#if price?.price > 0}
-				<div>
-					{price.price}
-				</div>
-			{:else}
-				n/a
-			{/if}
-		{:else}
-			<div>{product.price}</div>
+{#if product}
+	<div>
+		{#if title}
+			<div>
+				<h3 class="text-xl">{title}</h3>
+			</div>
 		{/if}
+		<div class="flex justify-between">
+			{#if product?.properties?.length}
+				{#if price?.price > 0}
+					<div>
+						{price.price}
+					</div>
+				{:else}
+					n/a
+				{/if}
+			{:else if product?.price}
+				<div>{product?.price}</div>
+			{/if}
+		</div>
 	</div>
-</div>
+{/if}

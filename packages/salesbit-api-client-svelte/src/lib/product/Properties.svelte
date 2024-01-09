@@ -32,52 +32,54 @@
 	};
 </script>
 
-{#if product?.properties?.length}
-	<div>
-		{#if title}
-			<h3 class="text-xl">{title}</h3>
-		{/if}
-		<div class="flex flex-col gap-2">
-			{#each product.properties as property, i}
-				<div class="flex items-center justify-between">
-					<div>{property.label}</div>
-					<div>
-						{#if property.type === 'radio'}
-							{#each property.rates as rate}
-								<div>
-									<input
-										type="radio"
-										id={'rate-' + rate.id}
-										name={'prop-' + property.id}
-										value={rate.id}
-										on:change={() => {
-											setTimeout(() => {
-												chunks[i] = rate.id;
-												onPropertySelect();
-											}, 10);
-										}}
-										checked={rate.id === chunks[i]}
-									/>
-									<label for={'rate-' + rate.id}>{rate.label}</label>
-								</div>
-							{/each}
-						{:else}
-							<select
-								on:change={() => {
-									setTimeout(() => {
-										onPropertySelect();
-									}, 10);
-								}}
-								bind:value={chunks[i]}
-							>
+{#if product}
+	{#if product?.properties?.length}
+		<div>
+			{#if title}
+				<h3 class="text-xl">{title}</h3>
+			{/if}
+			<div class="flex flex-col gap-2">
+				{#each product.properties as property, i}
+					<div class="flex items-center justify-between">
+						<div>{property.label}</div>
+						<div>
+							{#if property.type === 'radio'}
 								{#each property.rates as rate}
-									<option value={rate.id}>{rate.label}</option>
+									<div>
+										<input
+											type="radio"
+											id={'rate-' + rate.id}
+											name={'prop-' + property.id}
+											value={rate.id}
+											on:change={() => {
+												setTimeout(() => {
+													chunks[i] = rate.id;
+													onPropertySelect();
+												}, 10);
+											}}
+											checked={rate.id === chunks[i]}
+										/>
+										<label for={'rate-' + rate.id}>{rate.label}</label>
+									</div>
 								{/each}
-							</select>
-						{/if}
+							{:else}
+								<select
+									on:change={() => {
+										setTimeout(() => {
+											onPropertySelect();
+										}, 10);
+									}}
+									bind:value={chunks[i]}
+								>
+									{#each property.rates as rate}
+										<option value={rate.id}>{rate.label}</option>
+									{/each}
+								</select>
+							{/if}
+						</div>
 					</div>
-				</div>
-			{/each}
+				{/each}
+			</div>
 		</div>
-	</div>
+	{/if}
 {/if}
