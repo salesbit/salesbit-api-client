@@ -1822,4 +1822,5 @@
 <div>
 	<Properties title="Properties" bind:product></Properties>
 	<Price title="Price" bind:product></Price>
+	<!---->
 </div>
