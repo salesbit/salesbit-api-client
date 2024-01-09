@@ -9,6 +9,7 @@
     "require": "./dist/cjs/index.js",
     "import": "./dist/esm/index.js"
   },
+  "type": "module",
   "scripts": {
     "build": "tsc -b",
     "build:cjs": "tsc -p tsconfig.cjs.json",
