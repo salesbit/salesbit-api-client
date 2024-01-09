@@ -17,5 +17,6 @@
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "lerna": "^8.0.2"
-  }
+  },
+  "gitHead": "35f9af18654e02e518a6b658e415e36a7271ab2c"
 }

@@ -51,5 +51,6 @@
 	"type": "module",
 	"dependencies": {
 		"salesbit-api-client": "^1.0.5"
-	}
+	},
+	"gitHead": "35f9af18654e02e518a6b658e415e36a7271ab2c"
 }
