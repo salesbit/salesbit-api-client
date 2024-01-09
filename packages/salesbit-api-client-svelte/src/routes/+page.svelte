@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { APIClient, type Product } from 'salesbit-api-client';
+	import { APIClient } from 'salesbit-api-client';
 	import Properties from '$lib/product/Properties.svelte';
 	import Price from '$lib/product/Price.svelte';
 	import Checkout from '$lib/Checkout.svelte';
+	import User from '$lib/User.svelte';
 
 	let client: APIClient;
 	let product;
@@ -11,7 +12,7 @@
 
 	onMount(async () => {
 		client = new APIClient(
-			'http://localhost:5173',
+			'https://salesbit-panel.pages.dev',
 			'11111111-1111-1111-1111-111111111111',
 			'prj1-ZNoye-ffZDz-cyqMJ-3VOR9'
 		);
@@ -31,6 +32,8 @@
 		}
 	};
 </script>
+
+<User></User>
 
 {#if product}
 	<div>

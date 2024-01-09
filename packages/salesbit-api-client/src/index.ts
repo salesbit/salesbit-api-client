@@ -36,8 +36,7 @@ export class APIClient {
    */
   public async getCategories(): Promise<CategoryNode[]> {
     try {
-      const response =
-        await this.axiosInstance.get<CategoryNode[]>("/api/v1/categories");
+      const response = await this.axiosInstance.get<CategoryNode[]>("/api/v1/categories");
       return response.data;
     } catch (error) {
       throw error;
@@ -50,14 +49,9 @@ export class APIClient {
    * @returns A Promise that resolves to a CategoriesListResponse object.
    * @throws If an error occurs while making the API request.
    */
-  public async listCategories(
-    request: ListRequest
-  ): Promise<CategoriesListResponse> {
+  public async listCategories(request: ListRequest): Promise<CategoriesListResponse> {
     try {
-      const response = await this.axiosInstance.post<CategoriesListResponse>(
-        "/api/v1/categories/list",
-        request
-      );
+      const response = await this.axiosInstance.post<CategoriesListResponse>("/api/v1/categories/list", request);
       return response.data;
     } catch (error) {
       throw error;
@@ -72,9 +66,7 @@ export class APIClient {
    */
   public async getCategory(id: number): Promise<Category> {
     try {
-      const response = await this.axiosInstance.get<Category>(
-        "/api/v1/categories/" + id
-      );
+      const response = await this.axiosInstance.get<Category>("/api/v1/categories/" + id);
       return response.data;
     } catch (error) {
       throw error;
@@ -87,14 +79,9 @@ export class APIClient {
    * @returns A Promise that resolves to a ProductsListResponse object.
    * @throws If an error occurs while making the API request.
    */
-  public async listProducts(
-    request: ListRequest
-  ): Promise<ProductsListResponse> {
+  public async listProducts(request: ListRequest): Promise<ProductsListResponse> {
     try {
-      const response = await this.axiosInstance.post<ProductsListResponse>(
-        "/api/v1/products/list",
-        request
-      );
+      const response = await this.axiosInstance.post<ProductsListResponse>("/api/v1/products/list", request);
       return response.data;
     } catch (error) {
       throw error;
@@ -109,9 +96,7 @@ export class APIClient {
    */
   public async getProduct(id: number): Promise<Product> {
     try {
-      const response = await this.axiosInstance.get<Product>(
-        "/api/v1/products/" + id
-      );
+      const response = await this.axiosInstance.get<Product>("/api/v1/products/" + id);
       return response.data;
     } catch (error) {
       throw error;
@@ -129,10 +114,7 @@ export class APIClient {
 
   public async postCheckout(request: Checkout): Promise<Preorder> {
     try {
-      const response = await this.axiosInstance.post<Preorder>(
-        "/api/v1/checkout",
-        request
-      );
+      const response = await this.axiosInstance.post<Preorder>("/api/v1/checkout", request);
       return response.data;
     } catch (error) {
       throw error;
@@ -141,10 +123,7 @@ export class APIClient {
 
   public async postOrder(request: NewOrder): Promise<Order> {
     try {
-      const response = await this.axiosInstance.post<Order>(
-        "/api/v1/orders",
-        request
-      );
+      const response = await this.axiosInstance.post<Order>("/api/v1/orders", request);
       return response.data;
     } catch (error) {
       throw error;
@@ -153,22 +132,14 @@ export class APIClient {
 
   public async postUser(request: NewUser): Promise<User> {
     try {
-      const response = await this.axiosInstance.post<User>(
-        "/api/v1/users",
-        request
-      );
+      const response = await this.axiosInstance.post<User>("/api/v1/users", request);
       return response.data;
     } catch (error) {
       throw error;
     }
   }
 
-  public createCheckout(
-    app: HTMLElement,
-    items: Item[],
-    options: { layout?: { [key: string]: any } },
-    success: (order: Order) => {}
-  ): HTMLIFrameElement {
+  public createCheckout(app: HTMLElement, items: Item[], options: { layout?: { [key: string]: any } }, success: (order: Order) => {}): HTMLIFrameElement {
     const iframe = document.createElement("iframe");
     iframe.src = this.baseURL + "/projects/" + this.uid + "/checkout";
     iframe.style.width = "100%";
@@ -190,10 +161,7 @@ export class APIClient {
           case "mounted":
             //console.log("mounted parent", event);
             if (iframe.contentWindow) {
-              iframe.contentWindow.postMessage(
-                { action: "calculate", data: { items } },
-                "*"
-              );
+              iframe.contentWindow.postMessage({ action: "calculate", data: { items } }, "*");
               if (options.layout) {
                 iframe.contentWindow.postMessage(
                   {
@@ -233,6 +201,44 @@ export class APIClient {
           case "success":
             if (typeof success === "function") {
               success(event.data.order);
+            }
+          default:
+            console.log(event.data);
+            break;
+        }
+      }
+    });
+    return iframe;
+  }
+
+  public createMe(app: HTMLElement, options: { layout?: { [key: string]: any } }, callbacks: { error: (err: any) => {}; success: (me: any) => {} }): HTMLIFrameElement {
+    const iframe = document.createElement("iframe");
+    iframe.src = this.baseURL + "/projects/" + this.uid + "/me";
+    iframe.style.width = "100%";
+    iframe.style.height = "100%";
+    iframe.style.border = "none";
+    iframe.style.position = "absolute";
+    iframe.style.opacity = "0";
+    iframe.frameBorder = "0";
+
+    app.replaceChildren(iframe);
+
+    window.addEventListener("message", (event) => {
+      if (event.source === window) {
+        // reject messages from self
+        return;
+      }
+      if (typeof event.data === "object") {
+        switch (event.data.action) {
+          case "mounted":
+            console.log("mounted parent", event);
+          case "error":
+            if (typeof callbacks.error === "function") {
+              callbacks.error(event.data.order);
+            }
+          case "success":
+            if (typeof callbacks.success === "function") {
+              callbacks.success(event.data.order);
             }
           default:
             console.log(event.data);
