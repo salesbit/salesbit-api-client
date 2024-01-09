@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,16 +7,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.humanizeMoney = exports.InvoiceStatus = exports.OrderStatus = exports.APIClient = void 0;
-const axios_1 = __importDefault(require("axios"));
+import axios from "axios";
 /**
  * Represents an API client for interacting with the SalesBit API.
  */
-class APIClient {
+export class APIClient {
     /**
      * Creates an instance of the APIClient class.
      * @param baseURL - The base URL of the SalesBit API.
@@ -25,7 +19,7 @@ class APIClient {
      */
     constructor(baseURL, uid, token) {
         this.token = token;
-        this.axiosInstance = axios_1.default.create({
+        this.axiosInstance = axios.create({
             baseURL,
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -229,21 +223,20 @@ class APIClient {
         return iframe;
     }
 }
-exports.APIClient = APIClient;
-var OrderStatus;
+export var OrderStatus;
 (function (OrderStatus) {
     OrderStatus[OrderStatus["new"] = 1] = "new";
     OrderStatus[OrderStatus["paying"] = 2] = "paying";
     OrderStatus[OrderStatus["paid"] = 3] = "paid";
     OrderStatus[OrderStatus["unpaid"] = 4] = "unpaid";
-})(OrderStatus || (exports.OrderStatus = OrderStatus = {}));
-var InvoiceStatus;
+})(OrderStatus || (OrderStatus = {}));
+export var InvoiceStatus;
 (function (InvoiceStatus) {
     InvoiceStatus[InvoiceStatus["new"] = 1] = "new";
     InvoiceStatus[InvoiceStatus["paid"] = 2] = "paid";
     InvoiceStatus[InvoiceStatus["unpaid"] = 3] = "unpaid";
-})(InvoiceStatus || (exports.InvoiceStatus = InvoiceStatus = {}));
-const humanizeMoney = (number, currencyChar = "$") => {
+})(InvoiceStatus || (InvoiceStatus = {}));
+export const humanizeMoney = (number, currencyChar = "$") => {
     // Determine if the number has a fractional part
     const hasFractionalPart = number % 1 !== 0;
     // Create an options object for the Intl.NumberFormat
@@ -259,4 +252,3 @@ const humanizeMoney = (number, currencyChar = "$") => {
     // Return the formatted string with the currency character
     return `${currencyChar}${formattedNumber}`;
 };
-exports.humanizeMoney = humanizeMoney;
