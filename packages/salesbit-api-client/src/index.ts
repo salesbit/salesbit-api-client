@@ -4,6 +4,7 @@ import axios, { Axios } from "axios";
  * Represents an API client for interacting with the SalesBit API.
  */
 export class APIClient {
+  //
   private axiosInstance: Axios;
   private baseURL: string;
   private uid: string;
