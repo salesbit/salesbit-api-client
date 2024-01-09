@@ -33,7 +33,7 @@
 	};
 </script>
 
-<User></User>
+<User {client}></User>
 
 {#if product}
 	<div>

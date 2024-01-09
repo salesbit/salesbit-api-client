@@ -228,6 +228,41 @@ class APIClient {
         });
         return iframe;
     }
+    createMe(app, options, callbacks) {
+        const iframe = document.createElement("iframe");
+        iframe.src = this.baseURL + "/projects/" + this.uid + "/me";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.border = "none";
+        iframe.style.position = "absolute";
+        iframe.style.opacity = "0";
+        iframe.frameBorder = "0";
+        app.replaceChildren(iframe);
+        window.addEventListener("message", (event) => {
+            if (event.source === window) {
+                // reject messages from self
+                return;
+            }
+            if (typeof event.data === "object") {
+                switch (event.data.action) {
+                    case "mounted":
+                        console.log("mounted parent", event);
+                    case "error":
+                        if (typeof callbacks.error === "function") {
+                            callbacks.error(event.data.order);
+                        }
+                    case "success":
+                        if (typeof callbacks.success === "function") {
+                            callbacks.success(event.data.order);
+                        }
+                    default:
+                        console.log(event.data);
+                        break;
+                }
+            }
+        });
+        return iframe;
+    }
 }
 exports.APIClient = APIClient;
 var OrderStatus;

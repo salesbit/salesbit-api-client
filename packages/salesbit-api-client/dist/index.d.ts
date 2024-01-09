@@ -55,6 +55,14 @@ export declare class APIClient {
             [key: string]: any;
         };
     }, success: (order: Order) => {}): HTMLIFrameElement;
+    createMe(app: HTMLElement, options: {
+        layout?: {
+            [key: string]: any;
+        };
+    }, callbacks: {
+        error: (err: any) => {};
+        success: (me: any) => {};
+    }): HTMLIFrameElement;
 }
 export interface ListRequest {
     Search?: string;
