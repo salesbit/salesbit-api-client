@@ -232,6 +232,8 @@ export class APIClient {
         switch (event.data.action) {
           case "mounted":
             console.log("mounted parent", event);
+            iframe.style.opacity = "1";
+            iframe.style.position = "relative";
           case "error":
             if (typeof callbacks.error === "function") {
               callbacks.error(event.data.order);

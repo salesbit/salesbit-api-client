@@ -21,7 +21,9 @@
 		{#if title}
 			<h3 class="text-xl">{title}</h3>
 		{/if}
-		<div bind:this={element}></div>
+		<div style="border: 1px solid red; min-height: 100px;">
+			<div bind:this={element}></div>
+		</div>
 	</div>
 {:else}
 	<div style="color: red;">Client is not defined</div>
