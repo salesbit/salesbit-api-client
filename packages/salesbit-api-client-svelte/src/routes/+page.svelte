@@ -34,14 +34,11 @@
 	};
 </script>
 
-{#if client}
-	<User {client}></User>
-{/if}
-
 {#if product}
 	<div>
 		<Properties title="Properties" bind:product></Properties>
 		<Price title="Price" bind:product></Price>
+		<User {client}></User>
 		<Checkout {client}></Checkout>
 	</div>
 {:else}
