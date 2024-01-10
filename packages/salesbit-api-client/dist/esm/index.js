@@ -144,55 +144,57 @@ export class APIClient {
                 // reject messages from self
                 return;
             }
-            console.log("checkout event", event.data);
             if (typeof event.data === "object") {
-                switch (event.data.action) {
-                    case "mounted":
-                        {
-                            if (iframe.contentWindow) {
-                                iframe.contentWindow.postMessage({ action: "calculate", data: { items } }, "*");
-                                if (options.layout) {
-                                    iframe.contentWindow.postMessage({
-                                        action: "layout",
-                                        layout: options.layout,
-                                    }, "*");
+                if (event.data.sender === "checkout") {
+                    console.log("checkout event", event.data);
+                    switch (event.data.action) {
+                        case "mounted":
+                            {
+                                if (iframe.contentWindow) {
+                                    iframe.contentWindow.postMessage({ action: "calculate", data: { items } }, "*");
+                                    if (options.layout) {
+                                        iframe.contentWindow.postMessage({
+                                            action: "layout",
+                                            layout: options.layout,
+                                        }, "*");
+                                    }
+                                    iframe.style.opacity = "1";
+                                    iframe.style.position = "relative";
+                                    iframe.style.height = event.data.height + "px";
                                 }
-                                iframe.style.opacity = "1";
-                                iframe.style.position = "relative";
-                                iframe.style.height = event.data.height + "px";
                             }
-                        }
-                        break;
-                    case "resize":
-                        //console.log("resize", event.data.height);
-                        iframe.style.height = event.data.height + "px";
-                        break;
-                    case "pong":
-                        console.log("pong");
-                        break;
-                    case "maximize":
-                        iframe.style.position = "fixed";
-                        iframe.style.top = "0";
-                        iframe.style.left = "0";
-                        iframe.style.bottom = "0";
-                        iframe.style.right = "0";
-                        iframe.style.width = "100%";
-                        iframe.style.zIndex = "999999";
-                        setTimeout(() => {
-                            iframe.style.height = "100%";
-                        }, 100);
-                        break;
-                    case "unmaximize":
-                        iframe.style.position = "relative";
-                        iframe.style.zIndex = "initial";
-                        break;
-                    case "success":
-                        if (typeof success === "function") {
-                            success(event.data.order);
-                        }
-                    default:
-                        console.log(event.data);
-                        break;
+                            break;
+                        case "resize":
+                            //console.log("resize", event.data.height);
+                            iframe.style.height = event.data.height + "px";
+                            break;
+                        case "pong":
+                            console.log("pong");
+                            break;
+                        case "maximize":
+                            iframe.style.position = "fixed";
+                            iframe.style.top = "0";
+                            iframe.style.left = "0";
+                            iframe.style.bottom = "0";
+                            iframe.style.right = "0";
+                            iframe.style.width = "100%";
+                            iframe.style.zIndex = "999999";
+                            setTimeout(() => {
+                                iframe.style.height = "100%";
+                            }, 100);
+                            break;
+                        case "unmaximize":
+                            iframe.style.position = "relative";
+                            iframe.style.zIndex = "initial";
+                            break;
+                        case "success":
+                            if (typeof success === "function") {
+                                success(event.data.order);
+                            }
+                        default:
+                            console.log(event.data);
+                            break;
+                    }
                 }
             }
         });
@@ -213,38 +215,40 @@ export class APIClient {
                 // reject messages from self
                 return;
             }
-            console.log("me event", event.data);
             if (typeof event.data === "object") {
-                switch (event.data.action) {
-                    case "mounted":
-                        {
-                            if (iframe.contentWindow) {
-                                if (options.layout) {
-                                    iframe.contentWindow.postMessage({
-                                        action: "layout",
-                                        layout: options.layout,
-                                    }, "*");
+                if (event.data.sender === "me") {
+                    console.log("me event", event.data);
+                    switch (event.data.action) {
+                        case "mounted":
+                            {
+                                if (iframe.contentWindow) {
+                                    if (options.layout) {
+                                        iframe.contentWindow.postMessage({
+                                            action: "layout",
+                                            layout: options.layout,
+                                        }, "*");
+                                    }
+                                    iframe.style.opacity = "1";
+                                    iframe.style.position = "relative";
+                                    iframe.style.height = event.data.height + "px";
                                 }
-                                iframe.style.opacity = "1";
-                                iframe.style.position = "relative";
-                                iframe.style.height = event.data.height + "px";
                             }
-                        }
-                        break;
-                    case "resize":
-                        iframe.style.height = event.data.height + "px";
-                        break;
-                    case "success":
-                        if (typeof callbacks.success === "function") {
-                            callbacks.success(event.data.me);
-                        }
-                    case "error":
-                        if (typeof callbacks.error === "function") {
-                            callbacks.error(event.data.err);
-                        }
-                    default:
-                        console.log(event.data);
-                        break;
+                            break;
+                        case "resize":
+                            iframe.style.height = event.data.height + "px";
+                            break;
+                        case "success":
+                            if (typeof callbacks.success === "function") {
+                                callbacks.success(event.data.me);
+                            }
+                        case "error":
+                            if (typeof callbacks.error === "function") {
+                                callbacks.error(event.data.err);
+                            }
+                        default:
+                            console.log(event.data);
+                            break;
+                    }
                 }
             }
         });
