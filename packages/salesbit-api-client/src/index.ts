@@ -231,7 +231,6 @@ export class APIClient {
       if (typeof event.data === "object") {
         switch (event.data.action) {
           case "mounted":
-            console.log("mounted parent", event);
             iframe.style.opacity = "1";
             iframe.style.position = "relative";
           case "error":
