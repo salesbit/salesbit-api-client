@@ -180,17 +180,18 @@ class APIClient {
             if (typeof event.data === "object") {
                 switch (event.data.action) {
                     case "mounted":
-                        //console.log("mounted parent", event);
-                        if (iframe.contentWindow) {
-                            iframe.contentWindow.postMessage({ action: "calculate", data: { items } }, "*");
-                            if (options.layout) {
-                                iframe.contentWindow.postMessage({
-                                    action: "layout",
-                                    layout: options.layout,
-                                }, "*");
+                        {
+                            if (iframe.contentWindow) {
+                                iframe.contentWindow.postMessage({ action: "calculate", data: { items } }, "*");
+                                if (options.layout) {
+                                    iframe.contentWindow.postMessage({
+                                        action: "layout",
+                                        layout: options.layout,
+                                    }, "*");
+                                }
+                                iframe.style.opacity = "1";
+                                iframe.style.position = "relative";
                             }
-                            iframe.style.opacity = "1";
-                            iframe.style.position = "relative";
                         }
                         break;
                     case "resize":
@@ -246,8 +247,19 @@ class APIClient {
             if (typeof event.data === "object") {
                 switch (event.data.action) {
                     case "mounted":
-                        iframe.style.opacity = "1";
-                        iframe.style.position = "relative";
+                        {
+                            if (iframe.contentWindow) {
+                                if (options.layout) {
+                                    iframe.contentWindow.postMessage({
+                                        action: "layout",
+                                        layout: options.layout,
+                                    }, "*");
+                                }
+                                iframe.style.opacity = "1";
+                                iframe.style.position = "relative";
+                            }
+                        }
+                        break;
                     case "error":
                         if (typeof callbacks.error === "function") {
                             callbacks.error(event.data.order);
