@@ -1,3 +1,3 @@
-export { default as ProductProperties } from './product/Properties.svelte';
-export { default as ProductPrice } from './product/Price.svelte';
-export { default as User } from './product/Price.svelte';
+export { default as Properties } from './product/Properties.svelte';
+export { default as Price } from './product/Price.svelte';
+export { default as User } from './User.svelte';
