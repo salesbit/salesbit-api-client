@@ -146,7 +146,6 @@ export class APIClient {
             }
             if (typeof event.data === "object") {
                 if (event.data.sender === "checkout") {
-                    console.log("checkout event", event.data);
                     switch (event.data.action) {
                         case "mounted":
                             {
@@ -196,6 +195,13 @@ export class APIClient {
                             break;
                     }
                 }
+                else if (event.data.sender === "me") {
+                    if (["loggedIn", "loggedOut"].indexOf(event.data.action) >= 0) {
+                        if (iframe.contentWindow) {
+                            iframe.contentWindow.postMessage({ action: "calculate", data: { items } }, "*");
+                        }
+                    }
+                }
             }
         });
         return iframe;
@@ -217,7 +223,6 @@ export class APIClient {
             }
             if (typeof event.data === "object") {
                 if (event.data.sender === "me") {
-                    console.log("me event", event.data);
                     switch (event.data.action) {
                         case "mounted":
                             {
