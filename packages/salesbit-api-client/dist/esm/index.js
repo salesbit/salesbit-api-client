@@ -198,7 +198,7 @@ export class APIClient {
                 else if (event.data.sender === "me") {
                     if (["loggedIn", "loggedOut"].indexOf(event.data.action) >= 0) {
                         if (iframe.contentWindow) {
-                            iframe.contentWindow.postMessage({ action: "calculate", data: { items } }, "*");
+                            iframe.contentWindow.postMessage({ action: "reload", data: { items } }, "*");
                         }
                     }
                 }
