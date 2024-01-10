@@ -227,13 +227,13 @@ export class APIClient {
                             }
                         }
                         break;
-                    case "error":
-                        if (typeof callbacks.error === "function") {
-                            callbacks.error(event.data.order);
-                        }
                     case "success":
                         if (typeof callbacks.success === "function") {
-                            callbacks.success(event.data.order);
+                            callbacks.success(event.data.me);
+                        }
+                    case "error":
+                        if (typeof callbacks.error === "function") {
+                            callbacks.error(event.data.err);
                         }
                     default:
                         console.log(event.data);

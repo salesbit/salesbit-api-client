@@ -4,7 +4,7 @@
 
 	export let title: string;
 	export let client: APIClient;
-	export let layout: any = { '.form': { backgroundColor: 'red' } };
+	export let layout: any; // = { '.form': { backgroundColor: 'red' } };
 
 	let element: HTMLElement;
 	let secured = true;
