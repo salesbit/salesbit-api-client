@@ -173,6 +173,7 @@ export class APIClient {
                 }
                 iframe.style.opacity = "1";
                 iframe.style.position = "relative";
+                iframe.style.height = event.data.height + "px";
               }
             }
             break;
@@ -245,8 +246,12 @@ export class APIClient {
                 }
                 iframe.style.opacity = "1";
                 iframe.style.position = "relative";
+                iframe.style.height = event.data.height + "px";
               }
             }
+            break;
+          case "resize":
+            iframe.style.height = event.data.height + "px";
             break;
           case "success":
             if (typeof callbacks.success === "function") {
