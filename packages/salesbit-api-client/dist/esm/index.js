@@ -144,6 +144,7 @@ export class APIClient {
                 // reject messages from self
                 return;
             }
+            console.log("checkout event", event.data);
             if (typeof event.data === "object") {
                 switch (event.data.action) {
                     case "mounted":
@@ -212,6 +213,7 @@ export class APIClient {
                 // reject messages from self
                 return;
             }
+            console.log("me event", event.data);
             if (typeof event.data === "object") {
                 switch (event.data.action) {
                     case "mounted":
