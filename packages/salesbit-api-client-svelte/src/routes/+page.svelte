@@ -12,7 +12,8 @@
 
 	onMount(async () => {
 		client = new APIClient(
-			'https://salesbit-panel.pages.dev',
+			//'https://salesbit-panel.pages.dev',
+			'http://localhost:5173',
 			'11111111-1111-1111-1111-111111111111',
 			'prj1-ZNoye-ffZDz-cyqMJ-3VOR9'
 		);
