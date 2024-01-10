@@ -4,16 +4,17 @@
 
 	export let title: string;
 	export let client: APIClient;
+	export let items = [{ uid: '1-17', amount: 1 }];
 
 	let element;
 
 	onMount(async () => {
-		console.log('onMount', client, element);
+		//console.log('onMount', client, element);
 		const iframe = client.createCheckout(
 			//document.querySelector('#checkout'),
 			element,
 			//[{ uid: String(product.id), amount: 1 }],
-			[{ uid: '1-17', amount: 1 }],
+			items,
 			{ layout: { '.fields .label': { textDecoration: 'underline' } } },
 			(order: Order) => {
 				console.log('created order', order);
