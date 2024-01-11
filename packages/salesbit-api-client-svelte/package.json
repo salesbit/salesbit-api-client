@@ -1,6 +1,6 @@
 {
 	"name": "salesbit-api-client-svelte",
-	"version": "0.0.35",
+	"version": "0.0.36",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -50,7 +50,7 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"salesbit-api-client": "^1.0.23"
+		"salesbit-api-client": "^1.0.24"
 	},
 	"gitHead": "35f9af18654e02e518a6b658e415e36a7271ab2c"
 }
