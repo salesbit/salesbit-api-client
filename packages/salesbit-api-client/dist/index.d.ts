@@ -3,7 +3,8 @@
  */
 export declare class APIClient {
     private token;
-    private axiosInstance;
+    private instance1;
+    private instance2;
     private baseURL;
     private uid;
     /**
@@ -47,6 +48,7 @@ export declare class APIClient {
      */
     getProduct(id: number): Promise<Product>;
     getMe(): Promise<any>;
+    getMe2(): Promise<any>;
     postCheckout(request: Checkout): Promise<Preorder>;
     postOrder(request: NewOrder): Promise<Order>;
     postUser(request: NewUser): Promise<User>;

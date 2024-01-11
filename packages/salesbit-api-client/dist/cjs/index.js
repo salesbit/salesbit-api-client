@@ -25,11 +25,14 @@ class APIClient {
      */
     constructor(baseURL, uid, token) {
         this.token = token;
-        this.axiosInstance = axios_1.default.create({
+        this.instance1 = axios_1.default.create({
             baseURL,
             headers: {
                 Authorization: `Bearer ${token}`,
             },
+        });
+        this.instance2 = axios_1.default.create({
+            baseURL,
         });
         this.baseURL = baseURL;
         this.uid = uid;
@@ -42,7 +45,7 @@ class APIClient {
     getCategories() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axiosInstance.get("/api/v1/categories");
+                const response = yield this.instance1.get("/api/v1/categories");
                 return response.data;
             }
             catch (error) {
@@ -59,7 +62,7 @@ class APIClient {
     listCategories(request) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axiosInstance.post("/api/v1/categories/list", request);
+                const response = yield this.instance1.post("/api/v1/categories/list", request);
                 return response.data;
             }
             catch (error) {
@@ -76,7 +79,7 @@ class APIClient {
     getCategory(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axiosInstance.get("/api/v1/categories/" + id);
+                const response = yield this.instance1.get("/api/v1/categories/" + id);
                 return response.data;
             }
             catch (error) {
@@ -93,7 +96,7 @@ class APIClient {
     listProducts(request) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axiosInstance.post("/api/v1/products/list", request);
+                const response = yield this.instance1.post("/api/v1/products/list", request);
                 return response.data;
             }
             catch (error) {
@@ -110,7 +113,7 @@ class APIClient {
     getProduct(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axiosInstance.get("/api/v1/products/" + id);
+                const response = yield this.instance1.get("/api/v1/products/" + id);
                 return response.data;
             }
             catch (error) {
@@ -121,7 +124,18 @@ class APIClient {
     getMe() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axiosInstance.get("/api/v1/me");
+                const response = yield this.instance1.get("/api/v1/me");
+                return response.data;
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+    }
+    getMe2() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.instance2.get("/api/v1/me");
                 return response.data;
             }
             catch (error) {
@@ -132,7 +146,7 @@ class APIClient {
     postCheckout(request) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axiosInstance.post("/api/v1/checkout", request);
+                const response = yield this.instance1.post("/api/v1/checkout", request);
                 return response.data;
             }
             catch (error) {
@@ -143,7 +157,7 @@ class APIClient {
     postOrder(request) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axiosInstance.post("/api/v1/orders", request);
+                const response = yield this.instance1.post("/api/v1/orders", request);
                 return response.data;
             }
             catch (error) {
@@ -154,7 +168,7 @@ class APIClient {
     postUser(request) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axiosInstance.post("/api/v1/users", request);
+                const response = yield this.instance1.post("/api/v1/users", request);
                 return response.data;
             }
             catch (error) {

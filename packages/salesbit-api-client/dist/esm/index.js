@@ -10,11 +10,14 @@ export class APIClient {
      */
     constructor(baseURL, uid, token) {
         this.token = token;
-        this.axiosInstance = axios.create({
+        this.instance1 = axios.create({
             baseURL,
             headers: {
                 Authorization: `Bearer ${token}`,
             },
+        });
+        this.instance2 = axios.create({
+            baseURL,
         });
         this.baseURL = baseURL;
         this.uid = uid;
@@ -26,7 +29,7 @@ export class APIClient {
      */
     async getCategories() {
         try {
-            const response = await this.axiosInstance.get("/api/v1/categories");
+            const response = await this.instance1.get("/api/v1/categories");
             return response.data;
         }
         catch (error) {
@@ -41,7 +44,7 @@ export class APIClient {
      */
     async listCategories(request) {
         try {
-            const response = await this.axiosInstance.post("/api/v1/categories/list", request);
+            const response = await this.instance1.post("/api/v1/categories/list", request);
             return response.data;
         }
         catch (error) {
@@ -56,7 +59,7 @@ export class APIClient {
      */
     async getCategory(id) {
         try {
-            const response = await this.axiosInstance.get("/api/v1/categories/" + id);
+            const response = await this.instance1.get("/api/v1/categories/" + id);
             return response.data;
         }
         catch (error) {
@@ -71,7 +74,7 @@ export class APIClient {
      */
     async listProducts(request) {
         try {
-            const response = await this.axiosInstance.post("/api/v1/products/list", request);
+            const response = await this.instance1.post("/api/v1/products/list", request);
             return response.data;
         }
         catch (error) {
@@ -86,7 +89,7 @@ export class APIClient {
      */
     async getProduct(id) {
         try {
-            const response = await this.axiosInstance.get("/api/v1/products/" + id);
+            const response = await this.instance1.get("/api/v1/products/" + id);
             return response.data;
         }
         catch (error) {
@@ -95,7 +98,16 @@ export class APIClient {
     }
     async getMe() {
         try {
-            const response = await this.axiosInstance.get("/api/v1/me");
+            const response = await this.instance1.get("/api/v1/me");
+            return response.data;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+    async getMe2() {
+        try {
+            const response = await this.instance2.get("/api/v1/me");
             return response.data;
         }
         catch (error) {
@@ -104,7 +116,7 @@ export class APIClient {
     }
     async postCheckout(request) {
         try {
-            const response = await this.axiosInstance.post("/api/v1/checkout", request);
+            const response = await this.instance1.post("/api/v1/checkout", request);
             return response.data;
         }
         catch (error) {
@@ -113,7 +125,7 @@ export class APIClient {
     }
     async postOrder(request) {
         try {
-            const response = await this.axiosInstance.post("/api/v1/orders", request);
+            const response = await this.instance1.post("/api/v1/orders", request);
             return response.data;
         }
         catch (error) {
@@ -122,7 +134,7 @@ export class APIClient {
     }
     async postUser(request) {
         try {
-            const response = await this.axiosInstance.post("/api/v1/users", request);
+            const response = await this.instance1.post("/api/v1/users", request);
             return response.data;
         }
         catch (error) {
