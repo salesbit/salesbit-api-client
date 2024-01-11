@@ -5,9 +5,11 @@
 	import Price from '$lib/product/Price.svelte';
 	import Checkout from '$lib/Checkout.svelte';
 	import User from '$lib/User.svelte';
+	import User2 from '$lib/User2.svelte';
 
 	let client: APIClient;
 	let product;
+	let me: any;
 	let loading = false;
 
 	onMount(async () => {
@@ -38,8 +40,11 @@
 	<div>
 		<Properties title="Properties" bind:product></Properties>
 		<Price title="Price" bind:product></Price>
-		<User {client}></User>
-		<Checkout {client}></Checkout>
+		<!--User {client}></User-->
+		<!--Checkout {client}></Checkout-->
+		{#if client}
+			<User2 {client}></User2>
+		{/if}
 	</div>
 {:else}
 	<div>loading</div>

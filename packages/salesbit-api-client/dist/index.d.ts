@@ -3,8 +3,8 @@
  */
 export declare class APIClient {
     private token;
-    private instance1;
-    private instance2;
+    private projectInstance;
+    private userInstance;
     private baseURL;
     private uid;
     /**
@@ -47,8 +47,7 @@ export declare class APIClient {
      * @throws If an error occurs while making the API request.
      */
     getProduct(id: number): Promise<Product>;
-    getMe(): Promise<any>;
-    getMe2(): Promise<any>;
+    getProjectInfo(): Promise<any>;
     postCheckout(request: Checkout): Promise<Preorder>;
     postOrder(request: NewOrder): Promise<Order>;
     postUser(request: NewUser): Promise<User>;
@@ -65,6 +64,10 @@ export declare class APIClient {
         error: (err: any) => {};
         success: (me: any) => {};
     }): HTMLIFrameElement;
+    getUserInfo(): Promise<any>;
+    private getCsrf;
+    postLogin(email: string, password: string): Promise<any>;
+    postLogout(): Promise<any>;
 }
 export interface ListRequest {
     Search?: string;

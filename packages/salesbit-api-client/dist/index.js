@@ -25,14 +25,15 @@ class APIClient {
      */
     constructor(baseURL, uid, token) {
         this.token = token;
-        this.instance1 = axios_1.default.create({
+        this.projectInstance = axios_1.default.create({
             baseURL,
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
-        this.instance2 = axios_1.default.create({
+        this.userInstance = axios_1.default.create({
             baseURL,
+            withCredentials: true,
         });
         this.baseURL = baseURL;
         this.uid = uid;
@@ -45,7 +46,7 @@ class APIClient {
     getCategories() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.instance1.get("/api/v1/categories");
+                const response = yield this.projectInstance.get("/api/v1/categories");
                 return response.data;
             }
             catch (error) {
@@ -62,7 +63,7 @@ class APIClient {
     listCategories(request) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.instance1.post("/api/v1/categories/list", request);
+                const response = yield this.projectInstance.post("/api/v1/categories/list", request);
                 return response.data;
             }
             catch (error) {
@@ -79,7 +80,7 @@ class APIClient {
     getCategory(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.instance1.get("/api/v1/categories/" + id);
+                const response = yield this.projectInstance.get("/api/v1/categories/" + id);
                 return response.data;
             }
             catch (error) {
@@ -96,7 +97,7 @@ class APIClient {
     listProducts(request) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.instance1.post("/api/v1/products/list", request);
+                const response = yield this.projectInstance.post("/api/v1/products/list", request);
                 return response.data;
             }
             catch (error) {
@@ -113,7 +114,7 @@ class APIClient {
     getProduct(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.instance1.get("/api/v1/products/" + id);
+                const response = yield this.projectInstance.get("/api/v1/products/" + id);
                 return response.data;
             }
             catch (error) {
@@ -121,21 +122,10 @@ class APIClient {
             }
         });
     }
-    getMe() {
+    getProjectInfo() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.instance1.get("/api/v1/me");
-                return response.data;
-            }
-            catch (error) {
-                throw error;
-            }
-        });
-    }
-    getMe2() {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const response = yield this.instance2.get("/api/v1/me");
+                const response = yield this.projectInstance.get("/api/v1/me"); // from project
                 return response.data;
             }
             catch (error) {
@@ -146,7 +136,7 @@ class APIClient {
     postCheckout(request) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.instance1.post("/api/v1/checkout", request);
+                const response = yield this.projectInstance.post("/api/v1/checkout", request);
                 return response.data;
             }
             catch (error) {
@@ -157,7 +147,7 @@ class APIClient {
     postOrder(request) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.instance1.post("/api/v1/orders", request);
+                const response = yield this.projectInstance.post("/api/v1/orders", request);
                 return response.data;
             }
             catch (error) {
@@ -168,7 +158,7 @@ class APIClient {
     postUser(request) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.instance1.post("/api/v1/users", request);
+                const response = yield this.projectInstance.post("/api/v1/users", request);
                 return response.data;
             }
             catch (error) {
@@ -305,6 +295,83 @@ class APIClient {
             }
         });
         return iframe;
+    }
+    getUserInfo() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.userInstance.get("/api/v1/me"); // from user
+                return response.data;
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+    }
+    getCsrf() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.userInstance.get("/auth/csrf");
+                const data = response.data;
+                if (!data.csrfToken) {
+                    throw new Error("csrfToken not found");
+                }
+                return data.csrfToken;
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+    }
+    postLogin(email, password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const csrf = yield this.getCsrf();
+                if (!csrf) {
+                    throw new Error("csrfToken not found");
+                }
+                // Create a URLSearchParams object with your data
+                const params = new URLSearchParams();
+                params.append("username", email);
+                params.append("password", password);
+                params.append("redirect", "false");
+                params.append("csrfToken", csrf);
+                params.append("callbackUrl", "http://localhost:5173/projects/11111111-1111-1111-1111-111111111111/me");
+                // Make the POST request with `application/x-www-form-urlencoded` content type
+                const response = yield this.userInstance.post("/auth/callback/credentials?", params.toString(), {
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                });
+                return this.getUserInfo();
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+    }
+    postLogout() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const csrf = yield this.getCsrf();
+                if (!csrf) {
+                    throw new Error("csrfToken not found");
+                }
+                // Create a URLSearchParams object with your data
+                const params = new URLSearchParams();
+                params.append("csrfToken", csrf);
+                params.append("callbackUrl", "http://localhost:5173/projects/11111111-1111-1111-1111-111111111111/me");
+                // Make the POST request with `application/x-www-form-urlencoded` content type
+                const response = yield this.userInstance.post("/auth/signout", params.toString(), {
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                });
+                return response.data;
+            }
+            catch (error) {
+                throw error;
+            }
+        });
     }
 }
 exports.APIClient = APIClient;
