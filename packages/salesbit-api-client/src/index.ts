@@ -9,7 +9,7 @@ export class APIClient {
   private userInstance: Axios;
   private baseURL: string;
   private uid: string;
-
+  private cache: any;
   /**
    * Creates an instance of the APIClient class.
    * @param baseURL - The base URL of the SalesBit API.
@@ -32,7 +32,33 @@ export class APIClient {
     });
     this.baseURL = baseURL;
     this.uid = uid;
+    this.cache = {};
   }
+
+  private getCache = (key: string) => {
+    const entry = localStorage.getItem(key);
+    if (entry) {
+      const cacheEntry = JSON.parse(entry);
+      if (!cacheEntry.expiry || cacheEntry.expiry > Date.now()) {
+        return cacheEntry.data;
+      } else {
+        localStorage.removeItem(key);
+      }
+    }
+    return null;
+  };
+
+  private setCache = (key: string, value: any, ttl: number = 60000) => {
+    const entry = {
+      data: value,
+      expiry: ttl ? Date.now() + ttl : null,
+    };
+    localStorage.setItem(key, JSON.stringify(entry));
+  };
+
+  private rmCache = (key: string) => {
+    localStorage.removeItem(key);
+  };
 
   /**
    * Retrieves the list of categories from the SalesBit API.
@@ -287,10 +313,24 @@ export class APIClient {
     return iframe;
   }
 
-  public async getUserInfo(): Promise<any> {
+  private async getUser(url: string, ttl: number = 60000): Promise<any> {
     try {
-      const response = await this.userInstance.get<any>("/api/v1/me"); // from user
-      return response.data;
+      let data = this.getCache(url);
+      if (data) {
+        return data;
+      }
+      const response = await this.userInstance.get<any>(url); // from user
+      data = response.data;
+      this.setCache(url, data, ttl);
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async getUserInfo(ttl: number = 60000): Promise<any> {
+    try {
+      return await this.getUser("/api/v1/me", ttl);
     } catch (error) {
       throw error;
     }
@@ -322,7 +362,7 @@ export class APIClient {
       params.append("password", password);
       params.append("redirect", "false");
       params.append("csrfToken", csrf);
-      params.append("callbackUrl", "http://localhost:5173/projects/11111111-1111-1111-1111-111111111111/me");
+      params.append("callbackUrl", "");
 
       // Make the POST request with `application/x-www-form-urlencoded` content type
       const response = await this.userInstance.post("/auth/callback/credentials?", params.toString(), {
@@ -347,7 +387,7 @@ export class APIClient {
       // Create a URLSearchParams object with your data
       const params = new URLSearchParams();
       params.append("csrfToken", csrf);
-      params.append("callbackUrl", "http://localhost:5173/projects/11111111-1111-1111-1111-111111111111/me");
+      params.append("callbackUrl", "");
 
       // Make the POST request with `application/x-www-form-urlencoded` content type
       const response = await this.userInstance.post("/auth/signout", params.toString(), {
@@ -355,6 +395,9 @@ export class APIClient {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       });
+
+      this.rmCache("/api/v1/me");
+
       return response.data;
     } catch (error) {
       throw error;

@@ -7,12 +7,16 @@ export declare class APIClient {
     private userInstance;
     private baseURL;
     private uid;
+    private cache;
     /**
      * Creates an instance of the APIClient class.
      * @param baseURL - The base URL of the SalesBit API.
      * @param token - The authentication token for accessing the API.
      */
     constructor(baseURL: string, uid: string, token: string);
+    private getCache;
+    private setCache;
+    private rmCache;
     /**
      * Retrieves the list of categories from the SalesBit API.
      * @returns A Promise that resolves to an array of CategoryNode objects.
@@ -64,7 +68,8 @@ export declare class APIClient {
         error: (err: any) => {};
         success: (me: any) => {};
     }): HTMLIFrameElement;
-    getUserInfo(): Promise<any>;
+    private getUser;
+    getUserInfo(ttl?: number): Promise<any>;
     private getCsrf;
     postLogin(email: string, password: string): Promise<any>;
     postLogout(): Promise<any>;

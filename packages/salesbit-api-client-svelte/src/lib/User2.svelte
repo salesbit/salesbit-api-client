@@ -18,7 +18,10 @@
 
 	onMount(async () => {
 		try {
+			const t1 = new Date();
 			me = await client.getUserInfo();
+			const t2 = new Date();
+			console.log('getUserInfo', t2.getTime() - t1.getTime());
 		} catch (err) {
 			console.log(err);
 		} finally {
