@@ -3,6 +3,8 @@
 	import type { APIClient } from 'salesbit-api-client';
 
 	export let client: APIClient;
+	export let style: any;
+
 	let me: any;
 
 	let tab = 'login';
